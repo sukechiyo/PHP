@@ -1,0 +1,22 @@
+<?php
+// Here your code !
+
+# 普通の言葉でインプット
+$text = fgets(STDIN);
+
+# ジャパリ語辞典(ボキャ貧なので、増やしてください)
+$j_dictionary = array(
+    "すご" => "すっごーい!",
+    "すごい"=>"すごーい!",
+    "たのしい"=>"たーのしー!",
+    "知ってた?"=>"知ってたー?",
+    "おいしい"=>"おいしー!",
+    "えらい"=>"えらーい!"
+);
+
+#ジャパリ語変換
+if (array_key_exists($text, $j_dictionary) == true) {
+ print($j_dictionary[$text]);    
+}
+
+?>
