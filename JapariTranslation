@@ -14,7 +14,7 @@ $j_dictionary = array(
     "えらい"=>"えらーい!"
 );
 
-#ジャパリ語変換
+#ジャパリ語変換($j_dictionaryのキーに該当するものがあります　→　キーに対応した値を返します)
 if (array_key_exists($text, $j_dictionary) == true) {
  print($j_dictionary[$text]);    
 }
