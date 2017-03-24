@@ -1,0 +1,51 @@
+<?php
+// 参考にしたサイト(freefielder.jp)
+// 書いた感想：「Python厨」は正しいと思う。なんでこんなに複雑な式を書かなければならないのか？と思うけど、PHP書けないと挑めない会社もあるので、勉強のために書き続けてみようと思います。
+function getCpattern( $source, $m ){
+
+ $n = sizeof($source);
+
+ return ptn( $source, $n, array(), 0, $n-$m+1 );
+
+}
+
+function ptn( $source, $n, $subset, $begin, $end ){
+ $p = array();
+ for( $i = $begin; $i<$end; $i++){
+  $tmp =array_merge( $subset, (array)$source[$i] );
+  if( $end+1 <= $n ){
+   $p = array_merge($p , ptn( $source, $n, $tmp, $i+1, $end+1 ) );
+  }else{
+   array_push( $p, $tmp );
+  }
+ }
+ return $p;
+}
+
+$m = fgets(STDIN);
+
+$s = trim(fgets(STDIN));
+$source = str_replace(array("\r\n,\r\n"),"",$s);
+$source = explode(" ",$source);
+
+$p = getCPattern( $source, 2 );
+
+$count = count($p);
+$mach = 0;
+for($i = 0; $i < $count; $i++) {
+    $a = $p[$i][0];
+    $b = $p[$i][1];
+    $c = $a + $b;
+    
+    if($c == 256) {
+        $mach += 1;
+    }
+}
+if ($mach > 0) {
+    print("OK");
+} else {
+    print("NG");
+}
+ 
+
+?>
